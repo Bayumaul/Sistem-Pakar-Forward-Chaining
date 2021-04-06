@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\PenyakitController;
+use App\Models\Penyakit;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard');
+
+    Route::get('/penyakit', PenyakitController::class)->name('penyakit');
+
+});
+
 
 require __DIR__.'/auth.php';
