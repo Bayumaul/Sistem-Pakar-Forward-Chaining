@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
         
     Route::get('/datapenyakit', [App\Http\Controllers\PenyakitController::class, 'index'])->name('datapenyakit');
     Route::get('/createpenyakit', [App\Http\Controllers\PenyakitController::class, 'create'])->name('createpenyakit');
-    Route::post('/createpenyakit/{id}', [App\Http\Controllers\PenyakitController::class, 'store'])->name('penyakit.store');
+    Route::post('/createpenyakit', [App\Http\Controllers\PenyakitController::class, 'store']);
    
     // Route::get('create/{id}', [App\Http\Controllers\PenyakitController::class, 'create'])->name('penyakit.create');
     // Route::post('create', [App\Http\Controllers\PenyakitController::class, 'store']);

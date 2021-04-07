@@ -9,14 +9,12 @@ class Penyakit extends Model
 {
     protected $table = "penyakits";
     protected $primaryKey ="id";
-    protected $fillable =[
-        'id','id_penyakit','deskrip_penyakit','jenis penyakit','solusi' 
-    ];
+    protected $guarded=[];
     
     public function gejala()
     {
         
-        return $this->belongsToMany(Gejala::class);
+        return $this->belongsToMany(Gejala::class,'gelaja_penyakit');
 
     }
 

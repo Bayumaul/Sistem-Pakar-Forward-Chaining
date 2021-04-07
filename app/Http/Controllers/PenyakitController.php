@@ -14,9 +14,10 @@ class PenyakitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $dtgejala= Gejala::get();
-        return view('penyakit.datapenyakit',compact($dtgejala));
+    {      
+        return view('penyakit.datapenyakit',[
+            'penyakits' => Penyakit::latest()->paginate(),
+        ]);
 
     }
 
@@ -42,17 +43,17 @@ class PenyakitController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-    //    $penyakit = Penyakit::create([
-    //         'id_penyakit'=>request('id_penyakit'),
-    //         'jenis_penyakit'=>request('jenis_penyakit'),
-    //         'deskrip_penyakit'=>request('deskrip_penyakit'),
-    //         'solusi'=>request('solusi'),
-    //         // 'deskrip_penyakit'=>request('deskrip_penyakit'),
-    //     ]);
-    //     $penyakit->gejala()->sync(request('gejalas'));
+        // dd($request->all());
+       $penyakit = Penyakit::create([
+            'id_penyakit'=>request('id_penyakit'),
+            'jenis_penyakit'=>request('jenis_penyakit'),
+            'deskrip_penyakit'=>request('deskrip_penyakit'),
+            'solusi'=>request('solusi'),
+            'deskrip_penyakit'=>request('deskrip_penyakit'),
+        ]);
+        $penyakit->gejala()->sync(request('gejalas'));
 
-    //     return back()->with('success', 'penyakit was created');
+        return back()->with('success', 'penyakit was created');
     }
 
     /**

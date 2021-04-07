@@ -8,7 +8,6 @@
         <form class="container max-w-2xl mx-auto shadow-md md:w-3/4" action="{{ route('createpenyakit') }}"
             method="POST">
             @csrf
-            @method('PUT')
             <div class="space-y-6 bg-white">
                 <div class="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
                     <h2 class="max-w-sm mx-auto md:w-1/3">
@@ -53,8 +52,8 @@
                     <div class="max-w-sm mx-auto md:w-2/3">
                         <div class=" relative ">
                             <select id="deskrip_gejala" name="deskrip_gejala[]"
-                                class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                                placeholder="gejala" multiple>
+                                class=" js-example-basic-multiple rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                                placeholder="gejala" multiple="multiple">
                                 @foreach ($gejalas as $gejala)
                                 <option value="{{ $gejala->id }}"> {{ $gejala->deskrip_gejala }} </option>
                                 @endforeach
@@ -84,4 +83,11 @@
             {{-- @method(‘PUT’) --}}
         </form>
     </section>
+    @push('scripts')
+    <script>
+        $(deskrip_gejala).ready(function() {
+    $('.js-example-basic-multiple').select2();
+    });
+    </script>
+    @endpush
 </x-app-layout>

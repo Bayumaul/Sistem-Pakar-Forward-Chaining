@@ -48,38 +48,46 @@
                                 </th>
                                 <th
                                     class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
+                                    GEJALA PENYAKIT
+                                </th>
+                                <th
+                                    class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                                     SOLUSI ATAU SARAN
                                 </th>
                             </tr>
                         </thead>
-                        {{-- @foreach ($data as $item) --}}
+                        @foreach ($penyakits as $item)
 
 
                         <tbody>
                             <tr>
                                 <td
                                     class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-
+                                    1
                                 </td>
                                 <td
                                     class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                    {{-- {{ $item->id_gejala }} --}}
+                                    {{ $item->id_penyakit }}
                                 </td>
                                 <td
                                     class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                    {{-- {{ $item->deskrip_gejala }} --}}
+                                    {{ $item->jenis_penyakit }}
                                 </td>
                                 <td
                                     class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                    {{-- {{ $item->deskrip_gejala }} --}}
+                                    {{ $item->deskrip_penyakit }}
                                 </td>
                                 <td
                                     class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                                    {{-- {{ $item->deskrip_gejala }} --}}
+                                    {{-- {{ $item->gejalas()->get()->implode('deskrip_gejala',', ') }} --}}
+                                </td>
+                                <td
+                                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                    {{ $item->solusi }}
                                 </td>
                             </tr>
                         </tbody>
-                        {{-- @endforeach --}}
+                        @endforeach
                     </table>
                 </div>
             </div>
