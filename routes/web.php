@@ -20,12 +20,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->middleware(['auth'])->name('dashboard');
 
-    Route::get('/penyakit', PenyakitController::class)->name('penyakit');
+    //Gejala
+    Route::prefix('gejala')->group(function () {
+       
+    Route::get('/datagejala', [App\Http\Controllers\GejalaController::class, 'index'])->name('datagejala');
+    Route::get('/creategejala', [App\Http\Controllers\GejalaController::class, 'create'])->name('creategejala');
+    Route::post('/savegejala', [App\Http\Controllers\GejalaController::class, 'store'])->name('savegejala'); 
+    
+    });
+    //Penyakit
+    Route::prefix('penyakit')->group(function () {
+        
+    Route::get('/datapenyakit', [App\Http\Controllers\PenyakitController::class, 'index'])->name('datapenyakit');
+    Route::get('/createpenyakit', [App\Http\Controllers\PenyakitController::class, 'create'])->name('createpenyakit');
+    Route::post('/createpenyakit/{id}', [App\Http\Controllers\PenyakitController::class, 'store'])->name('penyakit.store');
+   
+    // Route::get('create/{id}', [App\Http\Controllers\PenyakitController::class, 'create'])->name('penyakit.create');
+    // Route::post('create', [App\Http\Controllers\PenyakitController::class, 'store']);
+    
+    });
 
 });
 

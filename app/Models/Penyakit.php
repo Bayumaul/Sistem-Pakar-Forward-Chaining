@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Penyakit extends Model
 {
-    use HasFactory;
-
+    protected $table = "penyakits";
+    protected $primaryKey ="id";
+    protected $fillable =[
+        'id','id_penyakit','deskrip_penyakit','jenis penyakit','solusi' 
+    ];
+    
     public function gejala()
     {
         

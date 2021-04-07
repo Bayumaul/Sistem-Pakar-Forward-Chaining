@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gejala;
 use App\Models\Penyakit;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class PenyakitController extends Controller
      */
     public function index()
     {
-        return view('penyakit');
+        $dtgejala= Gejala::get();
+        return view('penyakit.datapenyakit',compact($dtgejala));
+
     }
 
     /**
@@ -24,7 +27,11 @@ class PenyakitController extends Controller
      */
     public function create()
     {
-        //
+    
+        return view('penyakit.createpenyakit',[
+        'gejalas' => Gejala::get(),
+        ]
+        );
     }
 
     /**
@@ -35,7 +42,17 @@ class PenyakitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
+    //    $penyakit = Penyakit::create([
+    //         'id_penyakit'=>request('id_penyakit'),
+    //         'jenis_penyakit'=>request('jenis_penyakit'),
+    //         'deskrip_penyakit'=>request('deskrip_penyakit'),
+    //         'solusi'=>request('solusi'),
+    //         // 'deskrip_penyakit'=>request('deskrip_penyakit'),
+    //     ]);
+    //     $penyakit->gejala()->sync(request('gejalas'));
+
+    //     return back()->with('success', 'penyakit was created');
     }
 
     /**

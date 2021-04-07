@@ -14,7 +14,8 @@ class GejalaController extends Controller
      */
     public function index()
     {
-        //
+        $datagejala = Gejala::all();
+        return view('gejala.datagejala',compact('datagejala'));
     }
 
     /**
@@ -24,7 +25,7 @@ class GejalaController extends Controller
      */
     public function create()
     {
-        //
+        return view('gejala.creategejala');
     }
 
     /**
@@ -35,7 +36,16 @@ class GejalaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        Gejala::create(
+            [
+                'id_gejala'=>$request->id_gejala,
+                'deskrip_gejala'=>$request->deskrip_gejala,
+            ]
+            );
+
+            return redirect('datagejala');
+
     }
 
     /**
